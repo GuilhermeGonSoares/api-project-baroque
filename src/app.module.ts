@@ -5,12 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PaintingsModule } from './paintings/paintings.module';
 import { dataSourceOptions } from 'db/data-source';
 import { ChurchModule } from './church/church.module';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
     PaintingsModule,
     ChurchModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],

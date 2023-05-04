@@ -1,4 +1,5 @@
 import { Church } from 'src/church/entities/church.entity';
+import { Tag } from 'src/tag/entities/tag.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,6 +7,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity({ name: 'Paintings' })
@@ -42,4 +45,8 @@ export class Painting {
     onDelete: 'CASCADE',
   })
   church: Church;
+
+  @ManyToMany(() => Tag, (tag) => tag.paintings)
+  @JoinTable({ name: 'paintings_tags' })
+  tags: Tag[];
 }
