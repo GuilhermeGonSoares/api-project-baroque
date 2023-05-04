@@ -1,4 +1,5 @@
 import { Church } from 'src/church/entities/church.entity';
+import { Painter } from 'src/painter/entities/painter.entity';
 import { Tag } from 'src/tag/entities/tag.entity';
 import {
   Entity,
@@ -28,7 +29,7 @@ export class Painting {
   @Column({ nullable: true })
   theme: string;
 
-  @Column({ name: 'creation_year' })
+  @Column({ name: 'creation_year', nullable: true })
   creationYear: Date;
 
   @Column({ default: false })
@@ -43,10 +44,15 @@ export class Painting {
   // Relationship
   @ManyToOne(() => Church, (church) => church.paintings, {
     onDelete: 'CASCADE',
+    nullable: false,
   })
   church: Church;
 
   @ManyToMany(() => Tag, (tag) => tag.paintings)
   @JoinTable({ name: 'paintings_tags' })
   tags: Tag[];
+
+  @ManyToMany(() => Painter, (painter) => painter.paintings)
+  @JoinTable({ name: 'paintings_painters' })
+  painters: Painter[];
 }
