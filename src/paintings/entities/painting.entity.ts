@@ -1,9 +1,11 @@
+import { Church } from 'src/church/entities/church.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity({ name: 'Paintings' })
@@ -24,10 +26,20 @@ export class Painting {
   theme: string;
 
   @Column({ name: 'creation_year' })
-  creationYear: number;
+  creationYear: Date;
+
+  @Column({ default: false })
+  isPublished: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  // Relationship
+  @ManyToOne(() => Church, (church) => church.paintings, {
+    onDelete: 'CASCADE',
+  })
+  church: Church;
 }
