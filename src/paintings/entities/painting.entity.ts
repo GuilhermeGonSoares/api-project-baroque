@@ -11,6 +11,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
+import { Engraving } from './engraving.entity';
 
 @Entity({ name: 'Paintings' })
 export class Painting {
@@ -55,4 +56,8 @@ export class Painting {
   @ManyToMany(() => Painter, (painter) => painter.paintings)
   @JoinTable({ name: 'paintings_painters' })
   painters: Painter[];
+
+  @ManyToMany(() => Engraving)
+  @JoinTable({ name: 'paintings_engravings' })
+  engravings: Engraving[];
 }

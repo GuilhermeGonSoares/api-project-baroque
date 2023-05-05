@@ -7,6 +7,7 @@ import { dataSourceOptions } from 'db/data-source';
 import { ChurchModule } from './church/church.module';
 import { TagModule } from './tag/tag.module';
 import { PainterModule } from './painter/painter.module';
+import { BookModule } from './book/book.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { PainterModule } from './painter/painter.module';
     ChurchModule,
     TagModule,
     PainterModule,
+    BookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
